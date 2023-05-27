@@ -1,5 +1,7 @@
-import "./globals.css";
-import "./reset.css";
+import "./css/globals.css";
+import "./css/reset.css";
+import './css/mapbox-gl.css';
+import './css/cluster.css';
 import { Inter } from "next/font/google";
 import { Providers } from "./Providers";
 import { Metadata } from "next";
@@ -32,7 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bodyLayout`}>
         <Providers>{children}</Providers>
       </body>
     </html>

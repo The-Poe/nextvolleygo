@@ -1,13 +1,13 @@
 import styles from "./page.module.css";
-import UiLayer from "./uiLayer/page";
-import VolleyMapLayer from "./volleyMapLayer/page";
 import RootLayout from "./layout";
+import MapPage from "./map/page";
+import UseVH from "./clientComponents/UseVH";
 
 export default function App() {
   return (
     <RootLayout>
-      <UiLayer />
-      <VolleyMapLayer />
+      <UseVH />
+      <MapPage />
     </RootLayout>
   );
 }

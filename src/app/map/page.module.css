@@ -1,0 +1,11 @@
+.volleyMapLayer {
+    position: absolute;
+    z-index: 1;
+    width:100VW;
+    height:100%;
+}
+
+.uiLayer {
+    position:absolute;
+    z-index:2;
+}
