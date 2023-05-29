@@ -5,9 +5,9 @@ import UseVH from "./clientComponents/UseVH";
 
 export default function App() {
   return (
-    <RootLayout>
+    <>
       <UseVH />
       <MapPage />
-    </RootLayout>
+    </>
   );
 }

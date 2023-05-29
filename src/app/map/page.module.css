@@ -8,4 +8,6 @@
 .uiLayer {
     position:absolute;
     z-index:2;
+    width:100%; /*used to locate children*/
+    height:0;   /* height should be zero, otherwise will block the map */
 }
