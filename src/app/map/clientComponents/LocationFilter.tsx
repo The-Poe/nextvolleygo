@@ -1,78 +1,101 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import {
-  styled,
-  Switch,
-  FormGroup,
-  FormControlLabel
-} from "@mui/material";
+import { Menu, Popover, Switch, Transition } from '@headlessui/react';
+import * as React from 'react';
+import Image from 'next/image';
 
-const LocationFilterWrap = styled("div")(({ theme }) => ({
-  position: "absolute",
-  left: "16px",
-  top: "8px",
-}));
-
-const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-  width: 62,
-  height: 34,
-  padding: 7,
-  '& .MuiSwitch-switchBase': {
-    margin: 1,
-    padding: 0,
-    transform: 'translateX(6px)',
-    '&.Mui-checked': {
-      color: '#fff',
-      transform: 'translateX(22px)',
-      '& .MuiSwitch-thumb:before': {
-        backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-          '#fff',
-        )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
-      },
-      '& + .MuiSwitch-track': {
-        opacity: 1,
-        backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
-      },
-    },
+const solutions = [
+  {
+    name: 'Insights',
+    description: 'Measure actions your users take',
+    href: '##',
   },
-  '& .MuiSwitch-thumb': {
-    backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#001e3c',
-    width: 32,
-    height: 32,
-    '&:before': {
-      content: "''",
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      left: 0,
-      top: 0,
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center',
-      backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-        '#fff',
-      )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
-    },
+  {
+    name: 'Automations',
+    description: 'Create your own targeted content',
+    href: '##',
   },
-  '& .MuiSwitch-track': {
-    opacity: 1,
-    backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
-    borderRadius: 20 / 2,
+  {
+    name: 'Reports',
+    description: 'Keep track of your growth',
+    href: '##',
   },
-}));
-
-
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+];
 
 export default function LocationFilter() {
+  const [enabled, setEnabled] = React.useState(false);
   return (
-    <LocationFilterWrap>
-      <FormGroup>
-        <FormControlLabel
-          control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
-          label="Map Type"
-        />
-      </FormGroup>
-    </LocationFilterWrap>
+    <div className='absolute space-x-2 left-3 mt-2 flex items-center px-2 py-1 bg-gray-800/70 rounded-full'>
+      <Popover className='relative'>
+        {({ open }) => (
+          <>
+            <Popover.Button
+              className={`
+                ${open ? '' : 'text-opacity-90'}
+               h-8 w-8 inline-flex justify-center items-center rounded-full bg-sky-200/60 px-2 py-2 text-white hover:text-opacity-500 focus:outline focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+            >
+              <Image
+                className='cursor-pointer'
+                src='/filterIcon.svg'
+                alt='Filter Icon'
+                width={24}
+                height={24}
+                priority
+              />
+            </Popover.Button>
+            <Transition
+              as={React.Fragment}
+              enter='transition ease-out duration-200'
+              enterFrom='opacity-0 translate-y-1'
+              enterTo='opacity-100 translate-y-0'
+              leave='transition ease-in duration-150'
+              leaveFrom='opacity-100 translate-y-0'
+              leaveTo='opacity-0 translate-y-1'
+            >
+              <Popover.Panel className='absolute z-10 mt-3 w-screen max-w-[150px]'>
+                <div className='overflow-hidden rounded-lg shadow-lg ring-2 ring-black ring-opacity-5'>
+                  <div className='relative grid gap-6 bg-white px-3 py-6 lg:grid-cols-2'>
+                    {solutions.map((item) => (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className='-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50'
+                      >
+                        <div className='ml-4'>
+                          <p className='text-sm font-medium text-gray-900'>{item.name}</p>
+                          <p className='text-sm text-gray-500'>{item.description}</p>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </Popover.Panel>
+            </Transition>
+          </>
+        )}
+      </Popover>
+      <Switch
+        checked={enabled}
+        onChange={setEnabled}
+        className={`${enabled ? 'bg-blue-200/60' : 'bg-blue-300/60'}
+          relative inline-flex h-[32px] w-[64px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+      >
+        <span className='sr-only'>Use setting</span>
+        <div
+          aria-hidden='true'
+          className={`${enabled ? 'translate-x-8' : 'translate-x-0'}
+           pointer-events-none inline-flex justify-center items-center h-[28px] w-[28px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+        >
+          <Image
+            className='cursor-pointer'
+            src={`${enabled ? '/volleyBallIcon.svg' : '/courtIcon.svg'}`}
+            alt='Court Icon'
+            width={16}
+            height={16}
+            priority
+          />
+        </div>
+      </Switch>
+    </div>
   );
 }

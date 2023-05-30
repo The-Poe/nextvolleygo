@@ -1,26 +1,20 @@
-import Image from "next/image";
-import MapAppBar from "./clientComponents/MapAppBar";
-import UserMenu from "./clientComponents/UserMenu";
-import VolleyMap from "./clientComponents/VolleyMap";
-import styles from "./page.module.css"
-import {
-  Switch
-} from "@mui/material";
-import LocationFilter from "./clientComponents/LocationFilter";
+import UserMenu from './clientComponents/UserMenu';
+import VolleyMap from './clientComponents/VolleyMap';
+import styles from './page.module.css';
+import UseVH from '@/app/clientComponents/UseVH';
+import LocationFilter from './clientComponents/LocationFilter';
 
 export default function MapPage() {
-  
   return (
     <>
+      <UseVH />
       <div className={styles.volleyMapLayer}>
         <VolleyMap />
       </div>
       <div className={styles.uiLayer}>
-        {/* <MapAppBar /> */}
-        <LocationFilter/>
+        <LocationFilter />
         <UserMenu />
       </div>
     </>
-
   );
 }
