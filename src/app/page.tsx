@@ -1,6 +1,6 @@
-import styles from "./page.module.css";
-import RootLayout from "./layout";
-import MapPage from "./map/page";
+import styles from './page.module.css';
+import RootLayout from './layout';
+import MapPage from './map/page';
 
 export default function App() {
   return (
