@@ -1,8 +1,8 @@
 'use client';
 
 import { Menu, Popover, Switch, Transition } from '@headlessui/react';
-import * as React from 'react';
 import Image from 'next/image';
+import * as React from 'react';
 
 const solutions = [
   {
@@ -25,14 +25,14 @@ const solutions = [
 export default function LocationFilter() {
   const [enabled, setEnabled] = React.useState(false);
   return (
-    <div className='absolute space-x-2 left-3 mt-2 flex items-center px-2 py-1 bg-gray-800/70 rounded-full'>
+    <div className='absolute left-3 mt-2 flex items-center space-x-2 rounded-full bg-gray-800/70 px-2 py-1'>
       <Popover className='relative'>
         {({ open }) => (
           <>
             <Popover.Button
               className={`
                 ${open ? '' : 'text-opacity-90'}
-               h-8 w-8 inline-flex justify-center items-center rounded-full bg-sky-200/60 px-2 py-2 text-white hover:text-opacity-500 focus:outline focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+               hover:text-opacity-500 inline-flex h-8 w-8 items-center justify-center rounded-full bg-sky-200/60 p-2 text-white focus:outline focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
             >
               <Image
                 className='cursor-pointer'
@@ -84,7 +84,7 @@ export default function LocationFilter() {
         <div
           aria-hidden='true'
           className={`${enabled ? 'translate-x-8' : 'translate-x-0'}
-           pointer-events-none inline-flex justify-center items-center h-[28px] w-[28px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+           pointer-events-none inline-flex h-[28px] w-[28px] items-center justify-center rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
         >
           <Image
             className='cursor-pointer'

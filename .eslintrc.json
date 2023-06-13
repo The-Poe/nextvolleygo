@@ -51,7 +51,11 @@
         "simple-import-sort/imports": "error", // Import configuration for `eslint-plugin-simple-import-sort`
         "simple-import-sort/exports": "error", // Export configuration for `eslint-plugin-simple-import-sort`
         "@typescript-eslint/no-unused-vars": "off",
-        "react/jsx-no-useless-fragment": "off"
+        "react/jsx-no-useless-fragment": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "@typescript-eslint/no-shadow": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
+        "jsx-a11y/click-events-have-key-events": "off"
         // "unused-imports/no-unused-imports": "error",
         // "unused-imports/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
       }

@@ -1,8 +1,10 @@
 'use client';
-import Supercluster from 'supercluster';
-import Map, { MapRef, Marker } from 'react-map-gl';
-import { useEffect, useRef, useState } from 'react';
+
 import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
+import type { MapRef } from 'react-map-gl';
+import Map, { Marker } from 'react-map-gl';
+import Supercluster from 'supercluster';
 
 const supercluster = new Supercluster({
   radius: 75,
@@ -10,8 +12,8 @@ const supercluster = new Supercluster({
 });
 
 export default function VolleyMap() {
-  //overwrite VH unit height for all devices browser
-  //especially for parent .bodyLayout
+  // overwrite VH unit height for all devices browser
+  // especially for parent .bodyLayout
   const mapRef = useRef<MapRef>(null);
   const [points, setPoints] = useState<any>([]);
   const [clusters, setClusters] = useState<any>([]);

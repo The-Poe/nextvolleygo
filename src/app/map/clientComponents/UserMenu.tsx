@@ -1,9 +1,9 @@
 'use client';
 
 import { Menu, Transition } from '@headlessui/react';
-import * as React from 'react';
 import clsx from 'clsx';
 import Image from 'next/image';
+import * as React from 'react';
 
 interface IUser {
   name: string;
@@ -39,17 +39,17 @@ const navigations: IUserNavigationItem[] = [
 
 export default function UserMenu() {
   return (
-    <div className='absolute right-3 items-center mt-2'>
+    <div className='absolute right-3 mt-2 items-center'>
       {/* Profile dropdown */}
       <Menu as='div' className='relative'>
         <div>
           <Menu.Button
-            className='flex items-center max-w-xs text-sm
-                 bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
+            className='flex max-w-xs items-center rounded-full
+                 bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
           >
             <span className='sr-only'>Open user menu</span>
             <Image
-              className='w-10 h-10 rounded-full'
+              className='h-10 w-10 rounded-full'
               priority={false}
               src={user.imageUrl}
               alt=''
@@ -67,11 +67,11 @@ export default function UserMenu() {
           leaveFrom='transform opacity-100 scale-100'
           leaveTo='transform opacity-0 scale-95'
         >
-          <Menu.Items className='absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+          <Menu.Items className='absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
             {navigations.map((item) => (
               <Menu.Item key={item.name}>
                 {({ active }) => (
-                  //TODO: replace with nextJS Link
+                  // TODO: replace with nextJS Link
                   <a
                     href={item.href}
                     className={clsx(
