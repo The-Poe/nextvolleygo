@@ -48,7 +48,14 @@ export default function UserMenu() {
                  bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
           >
             <span className='sr-only'>Open user menu</span>
-            <Image className='w-10 h-10 rounded-full' src={user.imageUrl} alt='' width={32} />
+            <Image
+              className='w-10 h-10 rounded-full'
+              priority={false}
+              src={user.imageUrl}
+              alt=''
+              width={32}
+              height={32}
+            />
           </Menu.Button>
         </div>
         <Transition
