@@ -3,6 +3,7 @@
 import { Menu, Transition } from '@headlessui/react';
 import * as React from 'react';
 import clsx from 'clsx';
+import Image from 'next/image';
 
 interface IUser {
   name: string;
@@ -47,7 +48,14 @@ export default function UserMenu() {
                  bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
           >
             <span className='sr-only'>Open user menu</span>
-            <img className='w-10 h-10 rounded-full' src={user.imageUrl} alt='' />
+            <Image
+              className='w-10 h-10 rounded-full'
+              priority={false}
+              src={user.imageUrl}
+              alt=''
+              width={32}
+              height={32}
+            />
           </Menu.Button>
         </div>
         <Transition

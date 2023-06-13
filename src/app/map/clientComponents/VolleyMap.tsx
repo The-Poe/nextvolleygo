@@ -1,8 +1,8 @@
-"use client";
-import Supercluster from "supercluster";
-import Map, { MapRef, Marker } from "react-map-gl";
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+'use client';
+import Supercluster from 'supercluster';
+import Map, { MapRef, Marker } from 'react-map-gl';
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 const supercluster = new Supercluster({
   radius: 75,
@@ -17,15 +17,15 @@ export default function VolleyMap() {
   const [clusters, setClusters] = useState<any>([]);
   const [bounds, setBounds] = useState<any>([-180, -85, 180, 85]);
   const [zoom, setZoom] = useState<any>(12.5);
-  console.log("process.env.NODE_ENV:", process.env.NODE_ENV);
+  console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
   useEffect(() => {
     const asyncFetchData = async () => {
       const response = await fetch(
-        "https://raw.githubusercontent.com/The-Poe/VolleyCourtsWorldwide/main/volleyCourtsTW20170502Geo.json"
+        'https://raw.githubusercontent.com/The-Poe/VolleyCourtsWorldwide/main/volleyCourtsTW20170502Geo.json'
       );
       const data = await response.json();
       const points = data.features.map((court: any) => ({
-        type: "Feature",
+        type: 'Feature',
         properties: {
           cluster: false,
           courtId: court.properties.source_data_id,
@@ -35,8 +35,11 @@ export default function VolleyMap() {
           courtSite: court.properties.court_site,
         },
         geometry: {
-          type: "Point",
-          coordinates: [parseFloat(court.geometry.coordinates[0]), parseFloat(court.geometry.coordinates[1])],
+          type: 'Point',
+          coordinates: [
+            parseFloat(court.geometry.coordinates[0]),
+            parseFloat(court.geometry.coordinates[1]),
+          ],
         },
       }));
       setPoints(points);
@@ -54,7 +57,7 @@ export default function VolleyMap() {
     if (mapRef.current) {
       setBounds(mapRef.current.getMap().getBounds().toArray().flat());
     }
-  }, [mapRef?.current, zoom]);
+  }, [zoom]);
 
   // useEffect(() => {
   //   console.log("points:", points);
@@ -87,9 +90,9 @@ export default function VolleyMap() {
         latitude: 25.036192536573314,
         zoom: 12.5,
       }}
-      style={{ width: "100vw", height: "calc(var(--vh, 1vh) * 100)" }}
-      logoPosition="bottom-left"
-      mapStyle="mapbox://styles/poe-3/ckqvmcwps1so819qmtogdbsl8"
+      style={{ width: '100vw', height: 'calc(var(--vh, 1vh) * 100)' }}
+      logoPosition='bottom-left'
+      mapStyle='mapbox://styles/poe-3/ckqvmcwps1so819qmtogdbsl8'
       onZoomEnd={(e) => setZoom(Math.round(e.viewState.zoom))}
     >
       {clusters.map((cluster: any) => {
@@ -99,7 +102,7 @@ export default function VolleyMap() {
           return (
             <Marker key={`cluster-${cluster.id}`} longitude={longitude} latitude={latitude}>
               <div
-                className="cluster-marker"
+                className='cluster-marker'
                 style={{
                   width: `${14 + (point_count / points.length) * 30}px`,
                   height: `${14 + (point_count / points.length) * 30}px`,
@@ -120,8 +123,19 @@ export default function VolleyMap() {
         }
 
         return (
-          <Marker key={`court-${cluster.properties.courtId}`} longitude={longitude} latitude={latitude}>
-            <Image className="cursor-pointer" src="/volleyIcon.png" alt="Vercel Logo" width={24} height={24} priority />
+          <Marker
+            key={`court-${cluster.properties.courtId}`}
+            longitude={longitude}
+            latitude={latitude}
+          >
+            <Image
+              className='cursor-pointer'
+              src='/volleyIcon.png'
+              alt='Vercel Logo'
+              width={24}
+              height={24}
+              priority
+            />
             {/* <Tooltip title={cluster.properties.courtName}>
             <Avatar
               src={process.env.PUBLIC_URL + '/assets/images/volleyball.jpg'}
