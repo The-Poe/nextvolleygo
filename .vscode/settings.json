@@ -1,10 +1,16 @@
 {
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
   "javascript.preferences.importModuleSpecifier": "project-relative",
   "typescript.preferences.importModuleSpecifier": "project-relative",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "editor.formatOnSave": false,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": ["source.addMissingImports", "source.fixAll.eslint"],
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": ["heroicons"]
+  // "cSpell.words": ["heroicons"],
+  "prettier.ignorePath": ".gitignore" // Don't run prettier for files listed in .gitignore
 }
